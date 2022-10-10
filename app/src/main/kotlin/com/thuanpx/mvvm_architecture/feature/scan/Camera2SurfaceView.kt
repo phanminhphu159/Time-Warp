@@ -41,7 +41,7 @@ class Camera2SurfaceView : SurfaceView {
     private var pixelHeight = 0f
     private var scanWidth= 0f
     private var pixelWidth = 0f
-    private val speed = 10
+    private val speed = 4
 
     constructor(context: Context?) : super(context) {
         init()

@@ -7,7 +7,6 @@ import com.thuanpx.mvvm_architecture.base.BaseActivity
 import com.thuanpx.mvvm_architecture.databinding.ActivityMainBinding
 import com.thuanpx.mvvm_architecture.feature.home.HomeFragment
 import com.thuanpx.mvvm_architecture.feature.scan.ScanFragment
-import com.thuanpx.mvvm_architecture.feature.search.SearchFragment
 import com.thuanpx.mvvm_architecture.utils.navigation.BottomNavigationManager
 import com.thuanpx.mvvm_architecture.utils.navigation.createNavigationManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +26,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
         createNavigationManager {
             tabs = listOf(TAB1, TAB2)
             mainFragmentManager = supportFragmentManager
-            mainContainerViewId = R.id.mainContainer
+            mainContainerViewId = R.id.flMainContainer
         }
     }
 
@@ -40,7 +39,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
             return
         }
         if (bottomNavigationManager.getCurrentTab() != TAB1) {
-            viewBinding.bottomNav.selectedItemId = R.id.tab1
+            viewBinding.abMain.bnvMain.selectedItemId = R.id.tab1
             bottomNavigationManager.switchTab(TAB1, homeFragment)
             return
         }
@@ -49,9 +48,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
 
     override fun initialize() {
         bottomNavigationManager.addOrReplaceFragment(fragment = homeFragment)
-        viewBinding.run {
-            bottomNav.selectedItemId = R.id.tab1
-            bottomNav.setOnItemSelectedListener(
+        viewBinding.abMain.run {
+            bnvMain.selectedItemId = R.id.tab1
+            bnvMain.setOnItemSelectedListener(
                 NavigationBarView.OnItemSelectedListener { item ->
                     when (item.itemId) {
                         R.id.tab1 -> bottomNavigationManager.switchTab(tab = TAB1, fragment = homeFragment)

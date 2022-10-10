@@ -2,12 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/tab1"
-        android:icon="@drawable/ic_home"
-        android:title="Home"/>
+        android:icon="@drawable/ic_common_temporary"
+        android:title="@string/trending"/>
 
     <item
         android:id="@+id/tab2"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:title="Search"/>
+        android:icon="@drawable/ic_home"
+        android:title="@string/scan"/>
+    <item
+        android:id="@+id/tab3"
+        android:icon="@drawable/ic_common_temporary"
+        android:title="@string/gallery"/>
 
 </menu>

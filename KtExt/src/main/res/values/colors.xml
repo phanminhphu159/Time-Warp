@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blue_700">#1976d2</color>
+    <color name="home_gray">#F2F2F2</color>
+    <color name="black">#000000</color>
+    #000000
 </resources>
