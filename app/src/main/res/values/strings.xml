@@ -7,4 +7,11 @@
     <string name="msg_error_data_parse">Parse data error!</string>
     <string name="tv_scan">Scan</string>
     <string name="tv_stop">Stop</string>
+    <string name="trending">Trending</string>
+    <string name="scan">Scan</string>
+    <string name="gallery">Gallery</string>
+    <string name="title_appbar_main">Trending Video</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="try_now">TRY NOW</string>
 </resources>
