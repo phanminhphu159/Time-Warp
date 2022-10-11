@@ -155,7 +155,7 @@ dependencies {
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     // Bundler
-    implementation("com.github.skydoves:bundler:1.0.4")
+//    implementation("com.github.skydoves:bundler:1.0.4")
     // Paging
     implementation("androidx.paging:paging-runtime-ktx:3.1.1")
     // Scan
