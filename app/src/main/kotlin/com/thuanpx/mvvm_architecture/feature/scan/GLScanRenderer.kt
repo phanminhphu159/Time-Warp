@@ -6,7 +6,8 @@ import java.nio.ByteOrder
 
 
 class GLScanRenderer {
-    private var programId = -1
+    private var programIdVertical = -1
+    private var programIdHorizontal = -1
     private var aPositionHandle = 0
     private var sTextureSamplerHandle = 0
     private var uTextureSamplerHandle = 0
@@ -16,13 +17,26 @@ class GLScanRenderer {
     private val textures = IntArray(2)
     private val frameBuffers = IntArray(2)
     fun initShader() {
-        val fragmentShader = """varying highp vec2 vTexCoord;
+
+        val fragmentShaderVertical = """varying highp vec2 vTexCoord;
 uniform sampler2D sTexture;
 uniform sampler2D uTexture;
 uniform highp float scanHeight;
 void main() {
-   highp float fy = 1.0 - vTexCoord.y;
-   if(fy > scanHeight){       highp vec4 rgba = texture2D(sTexture , vTexCoord);
+   highp float Coordinator = 1.0 - vTexCoord.y;
+   if(Coordinator > scanHeight){       highp vec4 rgba = texture2D(sTexture , vTexCoord);
+       gl_FragColor = rgba;
+   }else{       highp vec4 rgba = texture2D(uTexture , vTexCoord);
+       gl_FragColor = rgba;
+   }
+}"""
+        val fragmentShaderHorizontal = """varying highp vec2 vTexCoord;
+uniform sampler2D sTexture;
+uniform sampler2D uTexture;
+uniform highp float scanHeight;
+void main() {
+   highp float Coordinator =  vTexCoord.x;
+   if(Coordinator > scanHeight){       highp vec4 rgba = texture2D(sTexture , vTexCoord);
        gl_FragColor = rgba;
    }else{       highp vec4 rgba = texture2D(uTexture , vTexCoord);
        gl_FragColor = rgba;
@@ -35,24 +49,13 @@ void main() {
   vTexCoord = aTexCoord;
   gl_Position = aPosition;
 }"""
-        programId = ShaderUtils.createProgram(vertexShader, fragmentShader)
-        aPositionHandle = GLES20.glGetAttribLocation(programId, "aPosition")
-        sTextureSamplerHandle = GLES20.glGetUniformLocation(programId, "sTexture")
-        uTextureSamplerHandle = GLES20.glGetUniformLocation(programId, "uTexture")
-        aTextureCoordHandle = GLES20.glGetAttribLocation(programId, "aTexCoord")
-        scanHeightHandle = GLES20.glGetUniformLocation(programId, "scanHeight")
-//        val vertexData = floatArrayOf(
-//            1f, -1f, 0f,
-//            -1f, -1f, 0f,
-//            1f, 1f, 0f,
-//            -1f, 1f, 0f
-//        )
-//        val textureVertexData = floatArrayOf(
-//            1f, 0f,
-//            0f, 0f,
-//            1f, 1f,
-//            0f, 1f
-//        )
+        programIdVertical = ShaderUtils.createProgram(vertexShader, fragmentShaderVertical)
+        programIdHorizontal = ShaderUtils.createProgram(vertexShader, fragmentShaderHorizontal)
+        aPositionHandle = GLES20.glGetAttribLocation(programIdVertical, "aPosition")
+        sTextureSamplerHandle = GLES20.glGetUniformLocation(programIdVertical, "sTexture")
+        uTextureSamplerHandle = GLES20.glGetUniformLocation(programIdVertical, "uTexture")
+        aTextureCoordHandle = GLES20.glGetAttribLocation(programIdVertical, "aTexCoord")
+        scanHeightHandle = GLES20.glGetUniformLocation(programIdVertical, "scanHeight")
         val vertexData = floatArrayOf(
             1f, -1f, 0f,
             -1f, -1f, 0f,
@@ -119,6 +122,10 @@ void main() {
         GLES20.glGenFramebuffers(frameBuffers.size, frameBuffers, 0)
     }
 
+    fun updateShader(direction: Int) {
+    }
+
+
     private var width = 0
     private var height = 0
     fun setSize(width: Int, height: Int) {
@@ -163,13 +170,18 @@ void main() {
     }
 
     private var textureIndex = 0
-    fun drawFrame(texture: Int, scanHeight: Float) {
+    fun drawFrame(texture: Int, scanHeight: Float, direction: Int) {
+        // https://registry.khronos.org/OpenGL-Refpages/gl4/html/glVertexAttribPointer.xhtml
         val index = textureIndex
         textureIndex = (index + 1) % 2
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, frameBuffers[textureIndex])
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT or GLES20.GL_COLOR_BUFFER_BIT)
         GLES20.glViewport(0, 0, width, height)
-        GLES20.glUseProgram(programId)
+        if (direction == Camera2SurfaceView.directionVertical) {
+            GLES20.glUseProgram(programIdVertical)
+        } else {
+            GLES20.glUseProgram(programIdHorizontal)
+        }
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0)
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture)
         GLES20.glUniform1i(sTextureSamplerHandle, 0)
@@ -196,7 +208,8 @@ void main() {
         get() = textures[textureIndex]
 
     fun release() {
-        GLES20.glDeleteProgram(programId)
+        GLES20.glDeleteProgram(programIdVertical)
+        GLES20.glDeleteProgram(programIdHorizontal)
         GLES20.glDeleteFramebuffers(frameBuffers.size, frameBuffers, 0)
         GLES20.glDeleteTextures(textures.size, textures, 0)
         GLES20.glDeleteBuffers(bos.size, bos, 0)

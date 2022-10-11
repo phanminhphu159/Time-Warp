@@ -11,9 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-/**
- * Created by ThuanPx on 16/09/2021.
- */
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>(SplashViewModel::class) {

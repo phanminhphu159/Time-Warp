@@ -16,6 +16,7 @@ class ScanActivity : BaseActivity<ScanViewModel, FragmentScanBinding>(ScanViewMo
 
     override fun initialize() {
         viewBinding.ivTakePhoto.setOnClickListener { onScan() }
+        viewBinding.ivChangeStyleCam.setOnClickListener { switchScan() }
     }
 
     override fun onSubscribeObserver() {
@@ -23,6 +24,15 @@ class ScanActivity : BaseActivity<ScanViewModel, FragmentScanBinding>(ScanViewMo
     }
 
     fun onScan(){
-        viewBinding.cameraView.isScanVideo  = viewBinding.cameraView.isScanVideo
+        viewBinding.cameraView.isScanVideo = !viewBinding.cameraView.isScanVideo
+    }
+
+    fun switchScan(){
+        if (viewBinding.cameraView.directionScan == Camera2SurfaceView.directionVertical){
+            viewBinding.cameraView.directionScan = Camera2SurfaceView.directionHorizontal;
+        }
+        else{
+            viewBinding.cameraView.directionScan = Camera2SurfaceView.directionVertical;
+        }
     }
 }

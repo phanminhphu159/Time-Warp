@@ -14,6 +14,7 @@ import android.util.AttributeSet
 import android.util.Size
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import androidx.annotation.NonNull
 import androidx.core.content.PermissionChecker
 import java.util.*
 
@@ -35,13 +36,12 @@ class Camera2SurfaceView : SurfaceView {
     private val rect = Rect()
     private var cameraHandler: Handler? = null
     private var cameraThread: HandlerThread? = null
-    var isScanVideo = false
     private var isf = false
     private var scanHeight = 0f
     private var pixelHeight = 0f
-    private var scanWidth= 0f
-    private var pixelWidth = 0f
-    private val speed = 4
+    var isScanVideo = false
+    var directionScan : Int = 1 // 1 : Vertical , 2 : Horizontal
+    var speed = 10
 
     constructor(context: Context?) : super(context) {
         init()
@@ -72,7 +72,7 @@ class Camera2SurfaceView : SurfaceView {
                                     return
                                 }
                                 videoRenderer.drawFrame()
-                                var videoTexture: Int = videoRenderer.texture
+                                var videoTexture = videoRenderer.texture
                                 if (isScanVideo) {
                                     if (!isf) {
                                         scanHeight = pixelHeight * speed
@@ -85,11 +85,10 @@ class Camera2SurfaceView : SurfaceView {
                                             scanHeight = 3.0f
                                             fh = 1.0f
                                         }
-                                        scanRenderer.drawFrame(videoRenderer.texture, fh)
+                                        scanRenderer.drawFrame(videoRenderer.texture, fh, directionScan)
                                     }
                                     videoTexture = scanRenderer.texture
                                 }
-
                                 isf = isScanVideo
                                 GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT or GLES20.GL_COLOR_BUFFER_BIT)
                                 GLES20.glViewport(
@@ -118,14 +117,12 @@ class Camera2SurfaceView : SurfaceView {
                     previewWidth = mPreviewSize.height
                     previewHeight = mPreviewSize.width
                     pixelHeight = 1.0f / previewHeight
-                    pixelWidth = 1.0f / previewWidth
                     val left: Int
                     val top: Int
                     val viewWidth: Int
                     val viewHeight: Int
                     val sh = screenWidth * 1.0f / screenHeight
                     val vh = previewWidth * 1.0f / previewHeight
-                    // set size screen
                     if (sh < vh) {
                         left = 0
                         viewWidth = screenWidth
@@ -137,7 +134,6 @@ class Camera2SurfaceView : SurfaceView {
                         viewWidth = (previewWidth * 1.0f / previewHeight * viewHeight).toInt()
                         left = (screenWidth - viewWidth) / 2
                     }
-                    // rectangle
                     rect.left = left
                     rect.top = top
                     rect.right = left + viewWidth
@@ -206,19 +202,19 @@ class Camera2SurfaceView : SurfaceView {
     }
 
     private val stateCallback: CameraDevice.StateCallback = object : CameraDevice.StateCallback() {
-        override fun onOpened(cameraDevice: CameraDevice) {
+        override fun onOpened(@NonNull cameraDevice: CameraDevice) {
             mCameraDevice = cameraDevice
             takePreview()
         }
 
-        override fun onDisconnected(cameraDevice: CameraDevice) {
+        override fun onDisconnected(@NonNull cameraDevice: CameraDevice) {
             if (mCameraDevice != null) {
                 mCameraDevice!!.close()
                 mCameraDevice = null
             }
         }
 
-        override fun onError(cameraDevice: CameraDevice, i: Int) {}
+        override fun onError(@NonNull cameraDevice: CameraDevice, i: Int) {}
     }
 
     private fun takePreview() {
@@ -228,7 +224,7 @@ class Camera2SurfaceView : SurfaceView {
             mCameraDevice!!.createCaptureSession(
                 listOf(videoRenderer.getSurface()),
                 object : CameraCaptureSession.StateCallback() {
-                    override fun onConfigured(cameraCaptureSession: CameraCaptureSession) {
+                    override fun onConfigured(@NonNull cameraCaptureSession: CameraCaptureSession) {
                         if (null == mCameraDevice) return
                         mCameraCaptureSession = cameraCaptureSession
                         builder.set(
@@ -251,7 +247,7 @@ class Camera2SurfaceView : SurfaceView {
                         }
                     }
 
-                    override fun onConfigureFailed(cameraCaptureSession: CameraCaptureSession) {}
+                    override fun onConfigureFailed(@NonNull cameraCaptureSession: CameraCaptureSession) {}
                 },
                 mHandler
             )
@@ -278,5 +274,10 @@ class Camera2SurfaceView : SurfaceView {
                 collectorSizes
             ) { s1, s2 -> java.lang.Long.signum((s1.width * s1.height - s2.width * s2.height).toLong()) }
         } else sizes[0]
+    }
+
+    companion object{
+        const val directionVertical = 1
+        const val directionHorizontal = 2
     }
 }
