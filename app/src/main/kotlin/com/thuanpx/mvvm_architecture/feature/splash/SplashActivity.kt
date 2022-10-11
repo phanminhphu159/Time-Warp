@@ -1,13 +1,12 @@
 package com.thuanpx.mvvm_architecture.feature.splash
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import androidx.lifecycle.lifecycleScope
-import com.skydoves.bundler.intentOf
 import com.thuanpx.mvvm_architecture.base.BaseActivity
 import com.thuanpx.mvvm_architecture.databinding.ActivitySplashBinding
 import com.thuanpx.mvvm_architecture.feature.MainActivity
-import com.thuanpx.mvvm_architecture.feature.scan.ScanActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -26,9 +25,11 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>(Spla
     override fun initialize() {
         lifecycleScope.launch {
             delay(1_000)
-            intentOf<MainActivity> {
-                startActivity(this@SplashActivity)
-            }
+//            intentOf<MainActivity> {
+//                startActivity(this@SplashActivity)
+//            }
+            val intent = Intent(this@SplashActivity, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }

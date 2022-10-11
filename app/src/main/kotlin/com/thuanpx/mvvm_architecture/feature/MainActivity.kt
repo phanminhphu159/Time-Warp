@@ -1,12 +1,14 @@
 package com.thuanpx.mvvm_architecture.feature
 
+import android.content.Intent
 import android.view.LayoutInflater
 import com.google.android.material.navigation.NavigationBarView
 import com.thuanpx.mvvm_architecture.R
 import com.thuanpx.mvvm_architecture.base.BaseActivity
 import com.thuanpx.mvvm_architecture.databinding.ActivityMainBinding
 import com.thuanpx.mvvm_architecture.feature.home.HomeFragment
-import com.thuanpx.mvvm_architecture.feature.scan.ScanFragment
+import com.thuanpx.mvvm_architecture.feature.scan.ScanActivity
+import com.thuanpx.mvvm_architecture.feature.search.SearchFragment
 import com.thuanpx.mvvm_architecture.utils.navigation.BottomNavigationManager
 import com.thuanpx.mvvm_architecture.utils.navigation.createNavigationManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +22,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
     }
 
     private val homeFragment = HomeFragment()
-    private val searchFragment = ScanFragment()
+    private val searchFragment = SearchFragment()
 
     val bottomNavigationManager: BottomNavigationManager by lazy {
         createNavigationManager {
@@ -47,6 +49,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
     }
 
     override fun initialize() {
+        setOnClickListen()
         bottomNavigationManager.addOrReplaceFragment(fragment = homeFragment)
         viewBinding.abMain.run {
             bnvMain.selectedItemId = R.id.tab1
@@ -65,4 +68,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
     override fun onSubscribeObserver() {
         super.onSubscribeObserver()
     }
+
+    private fun setOnClickListen(){
+        viewBinding.abMain.flbtnTakePhoto.setOnClickListener {
+            val intent = Intent(this@MainActivity, ScanActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
 }
