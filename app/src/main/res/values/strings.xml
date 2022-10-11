@@ -14,4 +14,11 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="try_now">TRY NOW</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="photo">Photo</string>
+    <string name="bright">Bright</string>
+    <string name="timer">Timer</string>
+    <string name="line_speed">Line Speed</string>
+    <string name="remove_ads">Remove Ads</string>
 </resources>
