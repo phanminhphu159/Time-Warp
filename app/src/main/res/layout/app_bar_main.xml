@@ -10,21 +10,22 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tbHome"
-            app:title="@string/title_appbar_main"
-            app:navigationIcon="@drawable/ic_menu"
-            app:titleTextColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="end"
-            android:background="@color/home_gray">
+            android:layout_gravity="start"
+            android:background="@color/home_gray"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/menu"
+            app:title="@string/title_appbar_main"
+            app:titleTextColor="@color/black">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/dp_25"
                 android:layout_height="@dimen/dp_25"
-                android:layout_marginEnd="@dimen/dp_20"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/dp_20"
                 android:src="@drawable/ic_common_temporary" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -34,8 +35,7 @@
     <FrameLayout
         android:id="@+id/flMainContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnvMain"
@@ -53,8 +53,8 @@
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="@dimen/dp_25"
         android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_take_photo"
         app:backgroundTint="@color/black"
-        app:tint="@color/white"
-        android:src="@drawable/ic_take_photo" />
+        app:tint="@color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

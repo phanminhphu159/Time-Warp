@@ -155,6 +155,11 @@ dependencies {
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     // Bundler
+
+    implementation ("com.ncorti:slidetoact:0.3.0")
+
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 //    implementation("com.github.skydoves:bundler:1.0.4")
     // Paging
     implementation("androidx.paging:paging-runtime-ktx:3.1.1")

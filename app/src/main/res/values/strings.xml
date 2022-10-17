@@ -21,4 +21,8 @@
     <string name="timer">Timer</string>
     <string name="line_speed">Line Speed</string>
     <string name="remove_ads">Remove Ads</string>
+    <string name="horizontal">Horizontal</string>
+    <string name="vertical">Vertical</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>

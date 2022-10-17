@@ -2,6 +2,8 @@ package com.thuanpx.mvvm_architecture.feature
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.navigation.NavigationBarView
 import com.thuanpx.mvvm_architecture.R
 import com.thuanpx.mvvm_architecture.base.BaseActivity
@@ -20,7 +22,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
         const val TAB1 = 0
         const val TAB2 = 1
     }
-
+    lateinit var toggle: ActionBarDrawerToggle
     private val homeFragment = HomeFragment()
     private val searchFragment = SearchFragment()
 
@@ -49,6 +51,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
     }
 
     override fun initialize() {
+
+        setSupportActionBar(viewBinding.abMain.tbHome)
+        toggle = ActionBarDrawerToggle(this, viewBinding.drMain, R.string.open, R.string.close)
+
+        viewBinding.drMain.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         setOnClickListen()
         bottomNavigationManager.addOrReplaceFragment(fragment = homeFragment)
         viewBinding.abMain.run {
@@ -74,6 +86,20 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
             val intent = Intent(this@MainActivity, ScanActivity::class.java)
             startActivity(intent)
         }
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

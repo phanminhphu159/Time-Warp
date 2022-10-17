@@ -19,7 +19,7 @@ import androidx.core.content.PermissionChecker
 import java.util.*
 
 
-class Camera2SurfaceView : SurfaceView {
+ class Camera2SurfaceView : SurfaceView {
     private val mEglUtils = EGLUtils()
     private val videoRenderer = GLVideoRenderer()
     private val mRenderer = GLRenderer()
@@ -123,7 +123,7 @@ class Camera2SurfaceView : SurfaceView {
                     val viewHeight: Int
                     val sh = screenWidth * 1.0f / screenHeight
                     val vh = previewWidth * 1.0f / previewHeight
-                    if (sh < vh) {
+                    if (sh > vh) {
                         left = 0
                         viewWidth = screenWidth
                         viewHeight = (previewHeight * 1.0f / previewWidth * viewWidth).toInt()

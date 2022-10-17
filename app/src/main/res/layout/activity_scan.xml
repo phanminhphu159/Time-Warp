@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cls"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_300">
@@ -31,11 +33,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnCameraScreenBack"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibtnCameraScreenBack"
         android:layout_width="@dimen/dp_40"
         android:layout_height="@dimen/dp_40"
         android:layout_marginTop="@dimen/dp_10"
+        android:background="@android:color/transparent"
         android:backgroundTint="@color/gray_300"
         android:src="@drawable/ic_arrow_left"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,12 +52,12 @@
         app:layout_constraintEnd_toEndOf="@+id/GuidelineVertical0.9"
         app:layout_constraintStart_toStartOf="@id/GuidelineVertical0.9">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btnRemoveAds"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibtnRemoveAds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_15"
-            android:backgroundTint="@color/gray_300"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_common_temporary"
             app:layout_constraintBottom_toBottomOf="@id/viewRemoveAds"
             app:layout_constraintEnd_toEndOf="@id/viewRemoveAds"
@@ -68,10 +71,11 @@
             android:fontFamily="@font/balsamiq_sans"
             android:paddingTop="@dimen/dp_5"
             android:text="@string/remove_ads"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp_10"
-            app:layout_constraintEnd_toEndOf="@+id/btnRemoveAds"
-            app:layout_constraintStart_toStartOf="@id/btnRemoveAds"
-            app:layout_constraintTop_toBottomOf="@id/btnRemoveAds" />
+            app:layout_constraintEnd_toEndOf="@+id/ibtnRemoveAds"
+            app:layout_constraintStart_toStartOf="@id/ibtnRemoveAds"
+            app:layout_constraintTop_toBottomOf="@id/ibtnRemoveAds" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -82,11 +86,11 @@
         app:layout_constraintStart_toStartOf="@+id/GuidelineVertical0.9"
         app:layout_constraintTop_toBottomOf="@+id/viewRemoveAds">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btnBright"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibtnBright"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray_300"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_common_temporary"
             app:layout_constraintBottom_toBottomOf="@id/viewBright"
             app:layout_constraintEnd_toEndOf="@id/viewBright"
@@ -100,10 +104,11 @@
             android:fontFamily="@font/balsamiq_sans"
             android:paddingTop="@dimen/dp_5"
             android:text="@string/bright"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp_10"
-            app:layout_constraintEnd_toEndOf="@+id/btnBright"
-            app:layout_constraintStart_toStartOf="@id/btnBright"
-            app:layout_constraintTop_toBottomOf="@id/btnBright" />
+            app:layout_constraintEnd_toEndOf="@+id/ibtnBright"
+            app:layout_constraintStart_toStartOf="@id/ibtnBright"
+            app:layout_constraintTop_toBottomOf="@id/ibtnBright" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -114,11 +119,12 @@
         app:layout_constraintStart_toStartOf="@+id/GuidelineVertical0.9"
         app:layout_constraintTop_toBottomOf="@+id/viewBright">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btnTimer"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibtnTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_15"
+            android:background="@android:color/transparent"
             android:backgroundTint="@color/gray_300"
             android:paddingTop="@dimen/dp_5"
             android:src="@drawable/ic_common_temporary"
@@ -133,10 +139,11 @@
             android:fontFamily="@font/balsamiq_sans"
             android:paddingTop="@dimen/dp_5"
             android:text="@string/timer"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp_10"
-            app:layout_constraintEnd_toEndOf="@+id/btnTimer"
-            app:layout_constraintStart_toStartOf="@id/btnTimer"
-            app:layout_constraintTop_toBottomOf="@id/btnTimer" />
+            app:layout_constraintEnd_toEndOf="@+id/ibtnTimer"
+            app:layout_constraintStart_toStartOf="@id/ibtnTimer"
+            app:layout_constraintTop_toBottomOf="@id/ibtnTimer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -147,11 +154,11 @@
         app:layout_constraintStart_toStartOf="@+id/GuidelineVertical0.9"
         app:layout_constraintTop_toBottomOf="@+id/viewTimer">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btnLineSpeed"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibtnLineSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray_300"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_common_temporary"
             app:layout_constraintBottom_toBottomOf="@id/viewLineSpeed"
             app:layout_constraintEnd_toEndOf="@id/viewLineSpeed"
@@ -165,66 +172,45 @@
             android:fontFamily="@font/balsamiq_sans"
             android:paddingTop="@dimen/dp_5"
             android:text="@string/line_speed"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp_10"
-            app:layout_constraintEnd_toEndOf="@+id/btnLineSpeed"
-            app:layout_constraintStart_toStartOf="@id/btnLineSpeed"
-            app:layout_constraintTop_toBottomOf="@id/btnLineSpeed" />
+            app:layout_constraintEnd_toEndOf="@+id/ibtnLineSpeed"
+            app:layout_constraintStart_toStartOf="@id/ibtnLineSpeed"
+            app:layout_constraintTop_toBottomOf="@id/ibtnLineSpeed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivChangeStyleCam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_10"
-        android:backgroundTint="@color/gray_300"
-        android:src="@drawable/ic_change_style_cam"
-        app:layout_constraintBottom_toTopOf="@+id/ivTakePhoto"
-        app:layout_constraintEnd_toEndOf="@id/GuidelineVertical0.5"
-        app:layout_constraintStart_toStartOf="@+id/GuidelineVertical0.5" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivChangeCamera"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibtnChangeCamera"
         android:layout_width="@dimen/dp_50"
         android:layout_height="@dimen/dp_50"
         android:layout_marginBottom="@dimen/dp_10"
-        android:backgroundTint="@color/gray_300"
+        android:background="@android:color/transparent"
         android:src="@drawable/btn_change_camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/GuidelineVertical0.9"
         app:layout_constraintStart_toStartOf="@+id/GuidelineVertical0.9" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivTakePhoto"
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibtnTakePhoto"
         android:layout_width="@dimen/dp_60"
         android:layout_height="@dimen/dp_60"
-        android:background="?selectableItemBackgroundBorderless"
-        android:backgroundTint="@color/gray_300"
+        android:background="@drawable/shape_image_photo"
+        android:src="@drawable/ic_take_photo"
         app:layout_constraintBottom_toBottomOf="@id/GuidelineHorizontal0.9"
         app:layout_constraintEnd_toEndOf="@id/GuidelineVertical0.5"
         app:layout_constraintStart_toStartOf="@+id/GuidelineVertical0.5"
-        app:layout_constraintTop_toTopOf="@id/GuidelineHorizontal0.9"
-        app:srcCompat="@drawable/btn_take_photo" />
+        app:layout_constraintTop_toTopOf="@id/GuidelineHorizontal0.9" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivTakeVideo"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_40"
-        android:layout_marginStart="@dimen/dp_10"
-        android:backgroundTint="@color/gray_300"
-        app:layout_constraintBottom_toBottomOf="@id/GuidelineHorizontal0.9"
-        app:layout_constraintStart_toEndOf="@+id/ivTakePhoto"
-        app:layout_constraintTop_toTopOf="@id/GuidelineHorizontal0.9"
-        app:srcCompat="@drawable/btn_take_video" />
-
-    <androidx.appcompat.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_10"
         android:src="@drawable/ic_temp_photo"
-        app:layout_constraintBottom_toBottomOf="@id/ivChangeCamera"
+        app:layout_constraintBottom_toBottomOf="@id/ibtnChangeCamera"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ivChangeCamera" />
+        app:layout_constraintTop_toTopOf="@id/ibtnChangeCamera" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPhoto"
@@ -237,5 +223,69 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/GuidelineVertical0.5"
         app:layout_constraintStart_toStartOf="@id/GuidelineVertical0.5" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvScan"
+        android:layout_width="@dimen/dp_228"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/ibtnTakePhoto"
+        app:layout_constraintEnd_toEndOf="@id/GuidelineVertical0.5"
+        app:layout_constraintStart_toStartOf="@+id/GuidelineVertical0.5"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="@android:color/white"
+            app:tabBackground="@drawable/tabs_selector"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="fixed"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextAppearance="@style/CustomTabTextAppearance"
+            app:tabTextColor="@android:color/black">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vertical" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/horizontal" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/lnVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:background="@drawable/shape_image_photo"
+        android:padding="@dimen/dp_10"
+        app:layout_constraintBottom_toBottomOf="@id/GuidelineHorizontal0.9"
+        app:layout_constraintStart_toEndOf="@+id/ibtnTakePhoto"
+        app:layout_constraintTop_toTopOf="@id/GuidelineHorizontal0.9">
+
+        <androidx.appcompat.widget.AppCompatToggleButton
+            android:id="@+id/button_favorite"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_favorite"
+            android:checked="false"
+            android:text=""
+            android:textOff=""
+            android:textOn="" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

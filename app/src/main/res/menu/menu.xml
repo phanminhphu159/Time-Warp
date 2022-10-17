@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/toEditName"
+        android:title=""
+        app:showAsAction="always"
+        android:icon="@drawable/ic_take_photo" />
+    <item
+        android:id="@+id/toHistory"
+        android:title=""
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_take_video" />
+</menu>
