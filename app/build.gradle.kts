@@ -85,9 +85,9 @@ android {
 
     applicationVariants.all {
         val outputFileName = name +
-            "_versionName_$versionName" +
-            "_versionCode_$versionCode" +
-            "_time_${SimpleDateFormat("HH_mm_dd_MM_yyyy").format(Calendar.getInstance().time)}.apk"
+                "_versionName_$versionName" +
+                "_versionCode_$versionCode" +
+                "_time_${SimpleDateFormat("HH_mm_dd_MM_yyyy").format(Calendar.getInstance().time)}.apk"
         outputs.all {
             val output = this as? com.android.build.gradle.internal.api.BaseVariantOutputImpl
             output?.outputFileName = outputFileName
@@ -97,7 +97,8 @@ android {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlinx.coroutines.FlowPreview" + "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        freeCompilerArgs =
+            freeCompilerArgs + "-Xopt-in=kotlinx.coroutines.FlowPreview" + "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
     }
 }
 
@@ -155,7 +156,9 @@ dependencies {
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     // Bundler
-//    implementation("com.github.skydoves:bundler:1.0.4")
+
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
     // Paging
     implementation("androidx.paging:paging-runtime-ktx:3.1.1")
     // Scan

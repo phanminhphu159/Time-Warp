@@ -2,6 +2,8 @@ package com.thuanpx.mvvm_architecture.feature
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.navigation.NavigationBarView
 import com.thuanpx.mvvm_architecture.R
 import com.thuanpx.mvvm_architecture.base.BaseActivity
@@ -21,6 +23,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
         const val TAB2 = 1
     }
 
+    lateinit var toggle: ActionBarDrawerToggle
     private val homeFragment = HomeFragment()
     private val searchFragment = SearchFragment()
 
@@ -49,15 +52,24 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
     }
 
     override fun initialize() {
+
         setOnClickListen()
+        onCreateActionBar()
+
         bottomNavigationManager.addOrReplaceFragment(fragment = homeFragment)
         viewBinding.abMain.run {
             bnvMain.selectedItemId = R.id.tab1
             bnvMain.setOnItemSelectedListener(
                 NavigationBarView.OnItemSelectedListener { item ->
                     when (item.itemId) {
-                        R.id.tab1 -> bottomNavigationManager.switchTab(tab = TAB1, fragment = homeFragment)
-                        R.id.tab2 -> bottomNavigationManager.switchTab(tab = TAB2, fragment = searchFragment)
+                        R.id.tab1 -> bottomNavigationManager.switchTab(
+                            tab = TAB1,
+                            fragment = homeFragment
+                        )
+                        R.id.tab2 -> bottomNavigationManager.switchTab(
+                            tab = TAB2,
+                            fragment = searchFragment
+                        )
                     }
                     return@OnItemSelectedListener true
                 }
@@ -65,15 +77,33 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
         }
     }
 
-    override fun onSubscribeObserver() {
-        super.onSubscribeObserver()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
-    private fun setOnClickListen(){
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    private fun setOnClickListen() {
         viewBinding.abMain.flbtnTakePhoto.setOnClickListener {
             val intent = Intent(this@MainActivity, ScanActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun onCreateActionBar() {
+        setSupportActionBar(viewBinding.abMain.tbHome)
+        toggle = ActionBarDrawerToggle(this, viewBinding.drMain, R.string.open, R.string.close)
+        viewBinding.drMain.addDrawerListener(toggle)
+        toggle.syncState()
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
 }

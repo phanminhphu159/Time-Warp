@@ -21,4 +21,16 @@
     <string name="timer">Timer</string>
     <string name="line_speed">Line Speed</string>
     <string name="remove_ads">Remove Ads</string>
+    <string name="horizontal">Horizontal</string>
+    <string name="vertical">Vertical</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="time_warp">Time Warp</string>
+    <string name="ver_1_0_0">Ver 1.0.0</string>
+    <string name="removeAds">Remove ads</string>
+    <string name="rate_app">Rate App</string>
+    <string name="feedback_amp_report"><![CDATA[Feedback & Report]]></string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="share">Share</string>
+    <string name="emptyText" />
 </resources>
