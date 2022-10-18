@@ -1,20 +1,24 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_common_temporary"
-            android:title="@string/app_name" />
+            android:title="@string/removeAds" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_common_temporary"
-            android:title="@string/app_name" />
+            android:title="@string/rate_app" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_common_temporary"
-            android:title="@string/app_name" />
+            android:title="@string/feedback_amp_report" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_common_temporary"
-            android:title="@string/app_name" />
+            android:title="@string/privacy_policy" />
+        <item
+            android:id="@+id/nav_Share"
+            android:icon="@drawable/ic_common_temporary"
+            android:title="@string/share" />
     </group>
 </menu>
