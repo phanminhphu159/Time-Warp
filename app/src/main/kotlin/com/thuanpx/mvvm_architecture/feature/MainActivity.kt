@@ -23,11 +23,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
         const val TAB2 = 1
     }
 
-    lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var toggle: ActionBarDrawerToggle
     private val homeFragment = HomeFragment()
     private val searchFragment = SearchFragment()
 
-    val bottomNavigationManager: BottomNavigationManager by lazy {
+    private val bottomNavigationManager: BottomNavigationManager by lazy {
         createNavigationManager {
             tabs = listOf(TAB1, TAB2)
             mainFragmentManager = supportFragmentManager

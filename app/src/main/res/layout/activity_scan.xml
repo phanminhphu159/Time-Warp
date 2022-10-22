@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cls"
+    android:id="@+id/clScanRootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_300">
@@ -28,13 +27,20 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
 
-    <com.thuanpx.mvvm_architecture.feature.scan.Camera2SurfaceView
-        android:id="@+id/cameraView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clCameraView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <com.thuanpx.mvvm_architecture.feature.scan.Camera2SurfaceView
+            android:id="@+id/cameraView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/ibtnCameraScreenBack"
+        android:id="@+id/btnCameraScreenBack"
         android:layout_width="@dimen/dp_40"
         android:layout_height="@dimen/dp_40"
         android:layout_marginTop="@dimen/dp_10"
@@ -53,7 +59,7 @@
         app:layout_constraintStart_toStartOf="@id/GuidelineVertical0.9">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ibtnRemoveAds"
+            android:id="@+id/btnRemoveAds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_15"
@@ -68,14 +74,14 @@
             android:id="@+id/tvRemoveAds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/balsamiq_sans"
+            android:fontFamily="@font/text_icon_font"
             android:paddingTop="@dimen/dp_5"
             android:text="@string/remove_ads"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_10"
-            app:layout_constraintEnd_toEndOf="@+id/ibtnRemoveAds"
-            app:layout_constraintStart_toStartOf="@id/ibtnRemoveAds"
-            app:layout_constraintTop_toBottomOf="@id/ibtnRemoveAds" />
+            app:layout_constraintEnd_toEndOf="@+id/btnRemoveAds"
+            app:layout_constraintStart_toStartOf="@id/btnRemoveAds"
+            app:layout_constraintTop_toBottomOf="@id/btnRemoveAds" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/viewRemoveAds">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ibtnBright"
+            android:id="@+id/btnBright"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -101,14 +107,14 @@
             android:id="@+id/tvBright"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/balsamiq_sans"
+            android:fontFamily="@font/text_icon_font"
             android:paddingTop="@dimen/dp_5"
             android:text="@string/bright"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_10"
-            app:layout_constraintEnd_toEndOf="@+id/ibtnBright"
-            app:layout_constraintStart_toStartOf="@id/ibtnBright"
-            app:layout_constraintTop_toBottomOf="@id/ibtnBright" />
+            app:layout_constraintEnd_toEndOf="@+id/btnBright"
+            app:layout_constraintStart_toStartOf="@id/btnBright"
+            app:layout_constraintTop_toBottomOf="@id/btnBright" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -120,7 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/viewBright">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ibtnTimer"
+            android:id="@+id/btnTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_15"
@@ -136,14 +142,14 @@
             android:id="@+id/tvTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/balsamiq_sans"
+            android:fontFamily="@font/text_icon_font"
             android:paddingTop="@dimen/dp_5"
             android:text="@string/timer"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_10"
-            app:layout_constraintEnd_toEndOf="@+id/ibtnTimer"
-            app:layout_constraintStart_toStartOf="@id/ibtnTimer"
-            app:layout_constraintTop_toBottomOf="@id/ibtnTimer" />
+            app:layout_constraintEnd_toEndOf="@+id/btnTimer"
+            app:layout_constraintStart_toStartOf="@id/btnTimer"
+            app:layout_constraintTop_toBottomOf="@id/btnTimer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -155,7 +161,7 @@
         app:layout_constraintTop_toBottomOf="@+id/viewTimer">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ibtnLineSpeed"
+            android:id="@+id/btnLineSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -169,19 +175,19 @@
             android:id="@+id/tvLineSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/balsamiq_sans"
+            android:fontFamily="@font/text_icon_font"
             android:paddingTop="@dimen/dp_5"
             android:text="@string/line_speed"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_10"
-            app:layout_constraintEnd_toEndOf="@+id/ibtnLineSpeed"
-            app:layout_constraintStart_toStartOf="@id/ibtnLineSpeed"
-            app:layout_constraintTop_toBottomOf="@id/ibtnLineSpeed" />
+            app:layout_constraintEnd_toEndOf="@+id/btnLineSpeed"
+            app:layout_constraintStart_toStartOf="@id/btnLineSpeed"
+            app:layout_constraintTop_toBottomOf="@id/btnLineSpeed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/ibtnChangeCamera"
+        android:id="@+id/btnChangeCamera"
         android:layout_width="@dimen/dp_50"
         android:layout_height="@dimen/dp_50"
         android:layout_marginBottom="@dimen/dp_10"
@@ -191,9 +197,8 @@
         app:layout_constraintEnd_toStartOf="@+id/GuidelineVertical0.9"
         app:layout_constraintStart_toStartOf="@+id/GuidelineVertical0.9" />
 
-
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/ibtnTakePhoto"
+        android:id="@+id/btnTakePhoto"
         android:layout_width="@dimen/dp_60"
         android:layout_height="@dimen/dp_60"
         android:background="@drawable/shape_image_photo"
@@ -209,16 +214,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_10"
         android:src="@drawable/ic_temp_photo"
-        app:layout_constraintBottom_toBottomOf="@id/ibtnChangeCamera"
+        app:layout_constraintBottom_toBottomOf="@id/btnChangeCamera"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ibtnChangeCamera" />
+        app:layout_constraintTop_toTopOf="@id/btnChangeCamera" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp_10"
-        android:fontFamily="@font/balsamiq_sans"
+        android:fontFamily="@font/text_icon_font"
         android:text="@string/photo"
         android:textSize="@dimen/sp_16"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -231,7 +236,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_10"
         app:cardCornerRadius="@dimen/dp_20"
-        app:layout_constraintBottom_toTopOf="@+id/ibtnTakePhoto"
+        app:layout_constraintBottom_toTopOf="@+id/btnTakePhoto"
         app:layout_constraintEnd_toEndOf="@id/GuidelineVertical0.5"
         app:layout_constraintStart_toStartOf="@+id/GuidelineVertical0.5"
         app:strokeColor="@android:color/transparent">
@@ -273,11 +278,11 @@
         android:background="@drawable/shape_image_photo"
         android:padding="@dimen/dp_10"
         app:layout_constraintBottom_toBottomOf="@id/GuidelineHorizontal0.9"
-        app:layout_constraintStart_toEndOf="@+id/ibtnTakePhoto"
+        app:layout_constraintStart_toEndOf="@+id/btnTakePhoto"
         app:layout_constraintTop_toTopOf="@id/GuidelineHorizontal0.9">
 
         <androidx.appcompat.widget.AppCompatToggleButton
-            android:id="@+id/ibtnTakeVideo"
+            android:id="@+id/btnTakeVideo"
             android:layout_width="@dimen/dp_20"
             android:layout_height="@dimen/dp_20"
             android:background="@drawable/btn_take_video"

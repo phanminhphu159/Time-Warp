@@ -16,7 +16,7 @@
         android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/balsamiq_sans"
+        android:fontFamily="@font/text_icon_font"
         android:paddingTop="@dimen/dp_8"
         android:text="@string/time_warp"
         android:textColor="@color/black"
