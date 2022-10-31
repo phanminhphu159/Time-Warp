@@ -16,10 +16,12 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.annotation.NonNull
 import androidx.core.content.PermissionChecker
+import androidx.lifecycle.MutableLiveData
+import com.google.android.material.internal.ContextUtils.getActivity
 import java.util.*
 
 
- class Camera2SurfaceView : SurfaceView {
+class Camera2SurfaceView : SurfaceView {
     private val mEglUtils = EGLUtils()
     private val videoRenderer = GLVideoRenderer()
     private val mRenderer = GLRenderer()
@@ -39,9 +41,13 @@ import java.util.*
     private var isf = false
     private var scanHeight = 0f
     private var pixelHeight = 0f
+    var scanLineCoordinator = 0f // star at 0
+    var speed = 0.005f // speed time warp
+    var speedScanLineVertical = 1455
+    var speedScanLineHorizontal = 720
     var isScanVideo = false
     var directionScan : Int = 1 // 1 : Vertical , 2 : Horizontal
-    var speed = 10
+    var coordinator = MutableLiveData<Float>()
 
     constructor(context: Context?) : super(context) {
         init()
@@ -75,17 +81,21 @@ import java.util.*
                                 var videoTexture = videoRenderer.texture
                                 if (isScanVideo) {
                                     if (!isf) {
-                                        scanHeight = pixelHeight * speed
+                                        scanHeight = 0f
                                     } else {
-                                        scanHeight += pixelHeight * speed
+                                        scanHeight += pixelHeight
                                     }
+                                    // line speed
+                                    if (directionScan == directionVertical){
+                                        scanLineCoordinator +=  pixelHeight * speedScanLineVertical
+                                    }
+                                    else{
+                                        scanLineCoordinator += pixelHeight * speedScanLineHorizontal
+                                    }
+                                    // draw time warp
                                     if (scanHeight < 2.0) {
-                                        var fh = scanHeight
-                                        if (scanHeight >= 1.0) {
-                                            scanHeight = 3.0f
-                                            fh = 1.0f
-                                        }
-                                        scanRenderer.drawFrame(videoRenderer.texture, fh, directionScan)
+                                        scanRenderer.drawFrame(videoRenderer.texture, scanHeight, directionScan)
+                                        coordinator.postValue(scanLineCoordinator)
                                     }
                                     videoTexture = scanRenderer.texture
                                 }
@@ -114,32 +124,37 @@ import java.util.*
                 screenHeight = h
                 cameraHandler!!.post {
                     val mPreviewSize = getPreferredPreviewSize(mSizes, screenWidth, screenHeight)
-                    previewWidth = mPreviewSize.height
-                    previewHeight = mPreviewSize.width
-                    pixelHeight = 1.0f / previewHeight
+                    previewWidth = mPreviewSize.width
+                    previewHeight = mPreviewSize.height
+                    pixelHeight = speed
                     val left: Int
                     val top: Int
                     val viewWidth: Int
                     val viewHeight: Int
                     val sh = screenWidth * 1.0f / screenHeight
-                    val vh = previewWidth * 1.0f / previewHeight
+                    val vh = previewHeight * 1.0f / previewWidth
                     if (sh > vh) {
                         left = 0
                         viewWidth = screenWidth
-                        viewHeight = (previewHeight * 1.0f / previewWidth * viewWidth).toInt()
+                        viewHeight = (previewWidth * 1.0f / previewHeight * viewWidth).toInt()
                         top = (screenHeight - viewHeight) / 2
                     } else {
                         top = 0
                         viewHeight = screenHeight
-                        viewWidth = (previewWidth * 1.0f / previewHeight * viewHeight).toInt()
-                        left = (screenWidth - viewWidth) / 2
+                        viewWidth = screenWidth
+                        left = 0
+
+//                        top = 0
+//                        viewHeight = screenHeight
+//                        viewWidth = (previewHeight * 1.0f / previewWidth * viewHeight).toInt()
+//                        left = (screenWidth - viewWidth) / 2 - 100
                     }
                     rect.left = left
                     rect.top = top
                     rect.right = left + viewWidth
                     rect.bottom = top + viewHeight
-                    videoRenderer.setSize(mPreviewSize.width, mPreviewSize.height)
-                    scanRenderer.setSize(mPreviewSize.width, mPreviewSize.height)
+                    videoRenderer.setSize(rect.right, rect.bottom )
+                    scanRenderer.setSize(rect.right , rect.bottom )
                     if (sw == -1) {
                         openCamera2()
                     }

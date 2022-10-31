@@ -32,11 +32,12 @@
     <color name="background">#2B292B</color>
     <color name="C_424242">#424242</color>
     <color name="gray_300">#F2F2F2</color>
+    <color name="lightBlue">#add8e6</color>
 
     <style name="CustomTabTextAppearance"
         parent="TextAppearance.MaterialComponents.Button">
-        <item name="fontFamily">@font/balsamiq_sans</item>
-        <item name="android:fontFamily">@font/balsamiq_sans</item>
+        <item name="fontFamily">@font/text_icon_font</item>
+        <item name="android:fontFamily">@font/text_icon_font</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">14sp</item>
     </style>
